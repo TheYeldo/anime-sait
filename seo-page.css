@@ -1,0 +1,294 @@
+:root {
+  color-scheme: dark;
+  --bg: #101114;
+  --panel: #17191d;
+  --line: #343840;
+  --text: #f6f7f9;
+  --muted: #aeb4bf;
+  --amber: #f5b84b;
+  --mint: #62d5a4;
+  --cyan: #70d8ee;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+a {
+  color: inherit;
+}
+
+.seo-shell {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.seo-header {
+  display: flex;
+  min-height: 78px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.seo-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.seo-brand-mark {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--amber);
+  font-weight: 900;
+}
+
+.seo-brand-copy {
+  display: grid;
+}
+
+.seo-brand-copy small,
+.seo-breadcrumbs,
+.seo-original,
+.seo-facts,
+.seo-description,
+.seo-footer,
+.seo-related-item span {
+  color: var(--muted);
+}
+
+.seo-catalog-link,
+.seo-primary-link {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 15px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.seo-primary-link {
+  border-color: rgba(245, 184, 75, 0.62);
+  background: var(--amber);
+  color: #17120f;
+}
+
+.seo-main {
+  padding: 28px 0 46px;
+}
+
+.seo-breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 22px;
+  font-size: 0.84rem;
+}
+
+.seo-detail {
+  display: grid;
+  grid-template-columns: minmax(240px, 330px) minmax(0, 1fr);
+  gap: clamp(24px, 5vw, 64px);
+  align-items: start;
+}
+
+.seo-poster {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  object-fit: cover;
+}
+
+.seo-copy {
+  min-width: 0;
+}
+
+.seo-kicker {
+  margin: 0 0 8px;
+  color: var(--mint);
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2rem, 6vw, 4.3rem);
+  line-height: 1.04;
+}
+
+.seo-original {
+  margin: 12px 0 0;
+  font-size: 1rem;
+}
+
+.seo-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px 16px;
+  margin: 24px 0;
+}
+
+.seo-score {
+  color: var(--amber);
+  font-weight: 900;
+}
+
+.seo-description {
+  max-width: 720px;
+  margin: 0;
+  font-size: 1.03rem;
+  line-height: 1.7;
+}
+
+.seo-genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 24px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.seo-genres li {
+  padding: 6px 9px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  color: var(--cyan);
+  font-size: 0.82rem;
+}
+
+.seo-related {
+  margin-top: 48px;
+  padding-top: 26px;
+  border-top: 1px solid var(--line);
+}
+
+.seo-related h2 {
+  margin: 0 0 16px;
+  font-size: 1.35rem;
+}
+
+.seo-related-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px 20px;
+}
+
+.seo-related-item {
+  display: grid;
+  gap: 3px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+}
+
+.seo-related-item:hover strong {
+  color: var(--amber);
+}
+
+.seo-footer {
+  padding: 22px 0 34px;
+  border-top: 1px solid var(--line);
+  font-size: 0.82rem;
+}
+
+@media (max-width: 760px) {
+  .seo-shell {
+    width: min(100% - 24px, 1120px);
+  }
+
+  .seo-header {
+    min-height: 68px;
+  }
+
+  .seo-brand-copy small {
+    display: none;
+  }
+
+  .seo-detail {
+    grid-template-columns: 112px minmax(0, 1fr);
+    grid-template-rows: auto auto auto auto auto auto auto;
+    gap: 16px;
+  }
+
+  .seo-copy {
+    display: contents;
+  }
+
+  .seo-poster {
+    grid-column: 1;
+    grid-row: 1 / span 4;
+    width: 112px;
+    height: 168px;
+  }
+
+  .seo-kicker {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: end;
+    margin: 0;
+  }
+
+  h1 {
+    grid-column: 2;
+    grid-row: 2;
+    font-size: 1.65rem;
+  }
+
+  .seo-original {
+    grid-column: 2;
+    grid-row: 3;
+    margin: 0;
+  }
+
+  .seo-facts {
+    grid-column: 2;
+    grid-row: 4;
+    align-self: start;
+    margin: 0;
+  }
+
+  .seo-description,
+  .seo-genres,
+  .seo-primary-link {
+    grid-column: 1 / -1;
+  }
+
+  .seo-description {
+    grid-row: 5;
+  }
+
+  .seo-genres {
+    grid-row: 6;
+    margin: 0;
+  }
+
+  .seo-primary-link {
+    grid-row: 7;
+  }
+
+  .seo-related-list {
+    grid-template-columns: 1fr;
+  }
+}

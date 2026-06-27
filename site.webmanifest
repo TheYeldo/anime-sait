@@ -1,0 +1,23 @@
+﻿{
+  "name": "Taytlo",
+  "short_name": "Taytlo",
+  "id": "./",
+  "description": "Русский каталог аниме с поиском, рейтингами, франшизами, персонажами, избранным и легальными источниками просмотра.",
+  "lang": "ru",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui", "browser"],
+  "orientation": "portrait-primary",
+  "background_color": "#101114",
+  "theme_color": "#101114",
+  "categories": ["entertainment", "video", "utilities"],
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

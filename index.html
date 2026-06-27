@@ -1,0 +1,819 @@
+﻿<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- SEO:START -->
+    <meta name="description" id="metaDescription" content="Русский каталог аниме с поиском, рейтингами, франшизами, персонажами, избранным и легальными источниками просмотра." />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#101114" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Taytlo" />
+    <link rel="canonical" id="canonicalLink" href="http://127.0.0.1:4173/" />
+    <link rel="manifest" href="./site.webmanifest" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:site_name" content="Taytlo" />
+    <meta property="og:type" id="ogType" content="website" />
+    <meta property="og:title" id="ogTitle" content="Taytlo - каталог аниме, рейтинги и просмотр" />
+    <meta property="og:description" id="ogDescription" content="Русский каталог аниме с поиском, рейтингами, франшизами, персонажами, избранным и легальными источниками просмотра." />
+    <meta property="og:url" id="ogUrl" content="http://127.0.0.1:4173/" />
+    <meta property="og:image" id="ogImage" content="http://127.0.0.1:4173/assets/frieren-2.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" id="twitterTitle" content="Taytlo - каталог аниме, рейтинги и просмотр" />
+    <meta name="twitter:description" id="twitterDescription" content="Русский каталог аниме с поиском, рейтингами, франшизами, персонажами, избранным и легальными источниками просмотра." />
+    <meta name="twitter:image" id="twitterImage" content="http://127.0.0.1:4173/assets/frieren-2.webp" />
+    <script type="application/ld+json" id="siteStructuredData">{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Taytlo",
+  "url": "http://127.0.0.1:4173/",
+  "description": "Русский каталог аниме с поиском, рейтингами, франшизами, персонажами, избранным и легальными источниками просмотра.",
+  "inLanguage": "ru",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "http://127.0.0.1:4173/?query={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+}</script>
+    <!-- SEO:END -->
+    <meta name="referrer" content="no-referrer" />
+    <link rel="preconnect" href="https://cdn.myanimelist.net" crossorigin />
+    <link rel="preconnect" href="https://shikimori.one" crossorigin />
+    <link rel="preconnect" href="https://anilibria.top" crossorigin />
+    <title>Taytlo - поиск аниме</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css?v=20260627-watch-hub-1" />
+    <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1/dist/hls.min.js" defer></script>
+    <script src="./seo-routes.js" defer></script>
+    <script src="./runtime-config.js?v=20260622-1" defer></script>
+    <script src="./analytics.js?v=20260622-1" defer></script>
+    <script src="./guide-data.js?v=20260622-1" defer></script>
+    <script src="./character-cache.js?v=20260621-1" defer></script>
+    <script src="./script.js?v=20260627-watch-hub-1" defer></script>
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar">
+        <a class="brand" href="./" aria-label="Taytlo">
+          <span class="brand-mark">TL</span>
+          <span class="brand-copy">
+            <strong>Taytlo</strong>
+            <small>anime hub</small>
+          </span>
+        </a>
+
+        <div class="topbar-actions">
+          <div class="quick-stats" aria-label="Статистика">
+            <span><b id="statAnime">0</b> аниме</span>
+            <span><b id="statFavorites">0</b> избранных</span>
+            <span><b id="statRated">0</b> оценок</span>
+          </div>
+          <button class="icon-button" type="button" id="themeToggle" title="Светлая тема" aria-label="Светлая тема">
+            <i data-lucide="sun" aria-hidden="true"></i>
+          </button>
+          <button class="secondary-button" type="button" id="installAppButton" hidden>
+            <i data-lucide="download" aria-hidden="true"></i>
+            <span>Установить</span>
+          </button>
+          <button class="secondary-button" type="button" id="profileButton">
+            <i data-lucide="user-round" aria-hidden="true"></i>
+            <span>Профиль</span>
+          </button>
+          <button class="secondary-button" type="button" id="adminButton">
+            <i data-lucide="settings-2" aria-hidden="true"></i>
+            <span>Управление</span>
+          </button>
+          <button class="secondary-button" type="button" id="addAnimeButton">
+            <i data-lucide="plus" aria-hidden="true"></i>
+            <span>Добавить аниме</span>
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section class="search-band" aria-label="Поиск аниме">
+          <form class="search-form" id="searchForm">
+            <label class="search-box" for="searchInput">
+              <i data-lucide="search" aria-hidden="true"></i>
+              <input
+                id="searchInput"
+                name="query"
+                type="search"
+                autocomplete="off"
+                placeholder="Найти аниме, жанр или персонажа"
+              />
+            </label>
+            <button class="primary-button" type="submit">
+              <i data-lucide="sparkles" aria-hidden="true"></i>
+              <span>Искать</span>
+            </button>
+          </form>
+
+          <div class="toolbar" aria-label="Фильтры">
+            <div class="segmented" role="tablist" aria-label="Режим">
+              <button class="segment is-active" type="button" data-view="catalog" role="tab" aria-selected="true">Каталог</button>
+              <button class="segment" type="button" data-view="top" role="tab" aria-selected="false">Топ</button>
+              <button class="segment" type="button" data-view="favorites" role="tab" aria-selected="false">Избранное</button>
+            </div>
+
+            <label class="range-control">
+              <span>Рейтинг от <b id="scoreValue">0</b></span>
+              <input id="scoreFilter" type="range" min="0" max="10" step="0.5" value="0" />
+            </label>
+
+            <label class="select-control">
+              <span>Сортировка</span>
+              <select id="sortSelect">
+                <option value="score">По рейтингу</option>
+                <option value="shikimori">По рейтингу Shikimori</option>
+                <option value="title">По названию</option>
+                <option value="year">По году</option>
+                <option value="genre">По жанру</option>
+                <option value="franchise">По франшизе</option>
+                <option value="favorite">Избранные выше</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="filter-row" aria-label="Фильтры каталога">
+            <label class="select-control">
+              <span>Жанр</span>
+              <input class="option-search" id="genreOptionSearch" placeholder="Поиск жанра" autocomplete="off" />
+              <select id="genreFilter">
+                <option value="">Все жанры</option>
+              </select>
+              <small class="filter-search-empty" id="genreSearchEmpty" hidden>Ничего не найдено</small>
+            </label>
+            <label class="select-control">
+              <span>Франшиза</span>
+              <input class="option-search" id="franchiseOptionSearch" placeholder="Поиск франшизы" autocomplete="off" />
+              <select id="franchiseFilter">
+                <option value="">Все франшизы</option>
+              </select>
+              <small class="filter-search-empty" id="franchiseSearchEmpty" hidden>Ничего не найдено</small>
+            </label>
+            <button class="secondary-button reset-filters" type="button" id="resetFiltersButton">
+              <i data-lucide="rotate-ccw" aria-hidden="true"></i>
+              <span>Сбросить</span>
+            </button>
+          </div>
+
+          <div class="quick-filter-row" aria-label="Быстрые фильтры">
+            <button class="quick-filter" type="button" data-quick-filter="available">
+              <i data-lucide="play-circle" aria-hidden="true"></i>
+              <span>Есть серии</span>
+              <b>0</b>
+            </button>
+            <button class="quick-filter" type="button" data-quick-filter="ongoing">
+              <i data-lucide="radio" aria-hidden="true"></i>
+              <span>Онгоинг</span>
+              <b>0</b>
+            </button>
+            <button class="quick-filter" type="button" data-quick-filter="completed">
+              <i data-lucide="check-circle-2" aria-hidden="true"></i>
+              <span>Завершено</span>
+              <b>0</b>
+            </button>
+            <button class="quick-filter" type="button" data-quick-filter="highRating">
+              <i data-lucide="star" aria-hidden="true"></i>
+              <span>Высокий рейтинг</span>
+              <b>0</b>
+            </button>
+            <button class="quick-filter" type="button" data-quick-filter="continue">
+              <i data-lucide="history" aria-hidden="true"></i>
+              <span>Продолжить</span>
+              <b>0</b>
+            </button>
+          </div>
+
+          <p class="status-line" id="statusLine" aria-live="polite">Готово к поиску.</p>
+        </section>
+
+        <section class="watch-hub" aria-labelledby="watchHubTitle">
+          <header class="watch-hub-head">
+            <div>
+              <p class="eyebrow">Что посмотреть сейчас</p>
+              <h2 id="watchHubTitle">Живая витрина Taytlo</h2>
+            </div>
+            <button class="secondary-button compact" type="button" id="watchHubRefresh">
+              <i data-lucide="shuffle" aria-hidden="true"></i>
+              <span>Обновить подборку</span>
+            </button>
+          </header>
+          <div class="watch-hub-grid" id="watchHubGrid"></div>
+        </section>
+
+        <section class="workspace" aria-label="Каталог и персонажи">
+          <div class="anime-column">
+            <div class="section-heading">
+              <h1 id="viewTitle">Каталог аниме</h1>
+              <button class="icon-button" type="button" id="refreshButton" title="Обновить поиск" aria-label="Обновить поиск">
+                <i data-lucide="refresh-cw" aria-hidden="true"></i>
+              </button>
+            </div>
+            <div class="anime-grid" id="animeGrid"></div>
+            <div class="catalog-load-more" id="catalogLoadMore">
+              <button class="secondary-button" type="button" id="showMoreButton">
+                <i data-lucide="chevrons-down" aria-hidden="true"></i>
+                <span>Показать ещё</span>
+              </button>
+            </div>
+            <div class="empty-state" id="emptyState" hidden>
+              <i data-lucide="scan-search" aria-hidden="true"></i>
+              <p>Ничего не найдено.</p>
+            </div>
+          </div>
+
+          <aside class="detail-pane" aria-label="Персонажи">
+            <div class="detail-cover" id="detailCover"></div>
+            <div class="detail-body">
+              <div class="detail-title-row">
+                <div>
+                  <p class="eyebrow" id="detailMeta">Выберите тайтл</p>
+                  <h2 id="detailTitle">Карточки персонажей</h2>
+                  <p class="detail-original" id="detailOriginalTitle" hidden></p>
+                </div>
+                <div class="detail-title-actions">
+                  <button class="icon-button" type="button" id="shareAnimeButton" title="Копировать ссылку" aria-label="Копировать ссылку">
+                    <i data-lucide="link-2" aria-hidden="true"></i>
+                  </button>
+                  <button class="icon-button" type="button" id="editAnimeButton" title="Редактировать карточку" aria-label="Редактировать карточку">
+                    <i data-lucide="pencil" aria-hidden="true"></i>
+                  </button>
+                  <button class="icon-button heart-button" type="button" id="detailFavorite" title="В избранное" aria-label="В избранное">
+                    <i data-lucide="heart" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+
+              <p class="synopsis" id="detailSynopsis">
+                Нажмите на любое аниме в каталоге, чтобы увидеть персонажей, жанры, рейтинг и быстрые действия.
+              </p>
+
+              <div class="availability-panel" id="detailAvailability">
+                <span class="availability-state" id="detailAvailabilityState">Проверяется</span>
+                <div>
+                  <strong id="detailAvailabilityTitle">Статус просмотра</strong>
+                  <p id="detailAvailabilityNote">Серии будут проверены через AniLibria API.</p>
+                </div>
+              </div>
+
+              <div class="detail-actions">
+                <button class="primary-button compact" type="button" id="watchAnimeButton">
+                  <i data-lucide="play" aria-hidden="true"></i>
+                  <span>Смотреть</span>
+                </button>
+                <label class="status-control">
+                  <span>Мой список</span>
+                  <select id="watchStatusSelect">
+                    <option value="">Не добавлено</option>
+                    <option value="watching">Смотрю</option>
+                    <option value="completed">Посмотрел</option>
+                    <option value="dropped">Брошено</option>
+                    <option value="planned">Планирую посмотреть</option>
+                  </select>
+                </label>
+              </div>
+              <p class="resume-hint" id="resumeHint" hidden></p>
+              <span class="franchise-label" id="detailFranchise">Франшиза не указана</span>
+
+              <section class="franchise-timeline" id="franchiseTimeline" aria-labelledby="franchiseTimelineTitle" hidden>
+                <div class="characters-head">
+                  <div>
+                    <p class="eyebrow">Хронология</p>
+                    <h3 id="franchiseTimelineTitle">Порядок просмотра</h3>
+                  </div>
+                  <span id="franchiseTimelineCount">0</span>
+                </div>
+                <div class="franchise-timeline-list" id="franchiseTimelineList"></div>
+              </section>
+
+              <section class="guide-notes" id="guideNotes" aria-labelledby="guideNotesTitle" hidden>
+                <div class="characters-head">
+                  <div>
+                    <p class="eyebrow">Гид</p>
+                    <h3 id="guideNotesTitle">Заметки по просмотру</h3>
+                  </div>
+                </div>
+                <p id="guideNotesText"></p>
+              </section>
+
+              <div class="rating-strip">
+                <div>
+                  <span class="metric-label" id="detailScoreLabel">Рейтинг Shikimori</span>
+                  <strong id="detailScore">-</strong>
+                  <span class="metric-sub" id="detailScoreMeta">Оценка Shikimori недоступна</span>
+                  <a class="metric-link" id="shikimoriLink" href="#" target="_blank" rel="noopener noreferrer" hidden>Открыть на Shikimori</a>
+                </div>
+                <div>
+                  <span class="metric-label">Ваша оценка</span>
+                  <div class="stars" id="detailStars" aria-label="Ваша оценка"></div>
+                </div>
+              </div>
+
+              <div class="genre-list" id="genreList"></div>
+              <section class="api-episodes" aria-labelledby="apiEpisodesTitle">
+                <div class="characters-head">
+                  <div>
+                    <p class="eyebrow">AniLibria API</p>
+                    <h3 id="apiEpisodesTitle">Серии</h3>
+                  </div>
+                  <span id="apiEpisodeCount">0</span>
+                </div>
+                <p class="status-line" id="apiEpisodesStatus">Загрузка серий...</p>
+                <div class="api-episode-list" id="apiEpisodeList"></div>
+                <a class="secondary-button api-release-link" id="aniLibriaReleaseLink" href="#" target="_blank" rel="noopener noreferrer" hidden>
+                  <i data-lucide="external-link" aria-hidden="true"></i>
+                  <span>Открыть на AniLibria</span>
+                </a>
+              </section>
+              <div class="characters-head">
+                <h3>Персонажи</h3>
+                <span id="characterCount">0</span>
+              </div>
+              <div class="character-grid" id="characterGrid"></div>
+            </div>
+          </aside>
+        </section>
+
+        <section class="content-section" id="collectionsSection" aria-labelledby="collectionsTitle">
+          <header class="content-heading">
+            <div>
+              <p class="eyebrow">Подборки</p>
+              <h2 id="collectionsTitle">Аниме-гид по настроению</h2>
+            </div>
+            <span id="collectionsHint">Готовые подборки по жанрам, темпу и типу героя</span>
+          </header>
+          <div class="collection-tabs" id="collectionTabs" role="tablist" aria-label="Подборки аниме"></div>
+          <div class="recommendation-shelf" id="collectionList"></div>
+        </section>
+
+        <section class="content-section" aria-labelledby="recommendationsTitle">
+          <header class="content-heading">
+            <div>
+              <p class="eyebrow">Персональная подборка</p>
+              <h2 id="recommendationsTitle">Если понравилось это аниме, попробуйте...</h2>
+            </div>
+            <span id="recommendationsHint">Подбираем по жанрам, рейтингу и франшизе</span>
+          </header>
+          <div class="recommendation-shelf" id="recommendationsList"></div>
+        </section>
+
+        <section class="content-section" aria-labelledby="myListsTitle">
+          <header class="content-heading">
+            <div>
+              <p class="eyebrow">Личная медиатека</p>
+              <h2 id="myListsTitle">Мои списки</h2>
+            </div>
+            <span>Статус меняется в подробной карточке выбранного аниме</span>
+          </header>
+          <div class="library-tabs" role="tablist" aria-label="Списки просмотра">
+            <button class="library-tab is-active" type="button" data-library-status="watching" role="tab" aria-selected="true">
+              <span>Смотрю</span><b id="countWatching">0</b>
+            </button>
+            <button class="library-tab" type="button" data-library-status="completed" role="tab" aria-selected="false">
+              <span>Посмотрел</span><b id="countCompleted">0</b>
+            </button>
+            <button class="library-tab" type="button" data-library-status="dropped" role="tab" aria-selected="false">
+              <span>Брошено</span><b id="countDropped">0</b>
+            </button>
+            <button class="library-tab" type="button" data-library-status="planned" role="tab" aria-selected="false">
+              <span>Планирую</span><b id="countPlanned">0</b>
+            </button>
+          </div>
+          <div class="library-shelf" id="libraryList"></div>
+        </section>
+
+        <section class="content-section" aria-labelledby="notificationsTitle">
+          <header class="content-heading">
+            <div>
+              <p class="eyebrow">Центр уведомлений</p>
+              <h2 id="notificationsTitle">Новые серии и ближайшие выходы</h2>
+            </div>
+            <button class="secondary-button" type="button" id="enableNotificationsButton">
+              <i data-lucide="bell" aria-hidden="true"></i>
+              <span>Включить уведомления</span>
+            </button>
+          </header>
+          <p class="status-line" id="notificationStatus">Уведомления работают локально в браузере.</p>
+          <div class="notification-list" id="notificationList"></div>
+        </section>
+
+        <section class="content-section" aria-labelledby="calendarTitle">
+          <header class="content-heading">
+            <div>
+              <p class="eyebrow">Расписание недели</p>
+              <h2 id="calendarTitle">Календарь выхода серий</h2>
+            </div>
+            <span>Только подтверждённые даты выхода из Shikimori API</span>
+          </header>
+          <div class="calendar-grid" id="calendarGrid"></div>
+        </section>
+
+        <section class="content-section" aria-labelledby="historyTitle">
+          <header class="content-heading">
+            <div>
+              <p class="eyebrow">Продолжить просмотр</p>
+              <h2 id="historyTitle">История просмотров</h2>
+            </div>
+            <button class="secondary-button" type="button" id="clearHistoryButton">
+              <i data-lucide="trash-2" aria-hidden="true"></i>
+              <span>Очистить</span>
+            </button>
+          </header>
+          <div class="history-list" id="historyList"></div>
+        </section>
+
+        <section class="content-section profile-section" id="profileSection" aria-labelledby="profileTitle">
+          <header class="content-heading">
+            <div>
+              <p class="eyebrow">Профиль</p>
+              <h2 id="profileTitle">Перенос прогресса</h2>
+            </div>
+            <span id="profileSummary">Профиль хранится в этом браузере</span>
+          </header>
+          <div class="profile-actions">
+            <button class="secondary-button" type="button" id="exportProfileButton">
+              <i data-lucide="file-down" aria-hidden="true"></i>
+              <span>Экспорт</span>
+            </button>
+            <label class="secondary-button profile-import-label" for="profileImportInput">
+              <i data-lucide="file-up" aria-hidden="true"></i>
+              <span>Импорт</span>
+            </label>
+            <input id="profileImportInput" type="file" accept="application/json" hidden />
+          </div>
+        </section>
+
+        <section class="content-section" aria-labelledby="topRequestsTitle">
+          <header class="content-heading">
+            <div>
+              <p class="eyebrow">Тренды сообщества</p>
+              <h2 id="topRequestsTitle">Пять топовых аниме по запросам наших пользователей</h2>
+            </div>
+            <span>Рейтинг обновляется по активности каталога</span>
+          </header>
+          <div class="ranked-shelf" id="topRequestsList"></div>
+        </section>
+
+        <section class="content-section" aria-labelledby="updatesTitle">
+          <header class="content-heading">
+            <div>
+              <p class="eyebrow">Свежие добавления</p>
+              <h2 id="updatesTitle">Обновления аниме</h2>
+            </div>
+            <span>Фактические новые серии из AniLibria API</span>
+          </header>
+          <div class="updates-shelf" id="updatesList"></div>
+        </section>
+
+        <section class="content-section" aria-labelledby="popularTitle">
+          <header class="content-heading">
+            <div>
+              <p class="eyebrow">За все время</p>
+              <h2 id="popularTitle">Самое популярное</h2>
+            </div>
+            <span>Самые популярные тайтлы на сайте за все время</span>
+          </header>
+          <div class="popular-shelf" id="popularList"></div>
+        </section>
+      </main>
+    </div>
+
+    <dialog class="modal" id="addAnimeDialog">
+      <form class="modal-panel" id="addAnimeForm">
+        <header class="modal-header">
+          <div>
+            <p class="eyebrow">Личная медиатека</p>
+            <h2>Добавить аниме</h2>
+          </div>
+          <button class="icon-button" type="button" data-close-dialog="addAnimeDialog" title="Закрыть" aria-label="Закрыть">
+            <i data-lucide="x" aria-hidden="true"></i>
+          </button>
+        </header>
+
+        <div class="form-grid">
+          <label class="field span-2">
+            <span>Название *</span>
+            <input id="customTitle" name="title" required placeholder="Например, Стальной алхимик" />
+          </label>
+          <label class="field">
+            <span>Франшиза</span>
+            <input id="customFranchise" name="franchise" placeholder="Fullmetal Alchemist" />
+          </label>
+          <label class="field">
+            <span>Жанры через запятую</span>
+            <input id="customGenres" name="genres" placeholder="Экшен, Фэнтези" />
+          </label>
+          <label class="field">
+            <span>Год</span>
+            <input id="customYear" name="year" type="number" min="1910" max="2100" placeholder="2026" />
+          </label>
+          <label class="field">
+            <span>Рейтинг</span>
+            <input id="customScore" name="score" type="number" min="0" max="10" step="0.1" placeholder="8.5" />
+          </label>
+          <label class="field span-2">
+            <span>День выхода серии</span>
+            <select id="customBroadcastDay" name="broadcastDay">
+              <option value="">Не указан</option>
+              <option value="monday">Понедельник</option>
+              <option value="tuesday">Вторник</option>
+              <option value="wednesday">Среда</option>
+              <option value="thursday">Четверг</option>
+              <option value="friday">Пятница</option>
+              <option value="saturday">Суббота</option>
+              <option value="sunday">Воскресенье</option>
+            </select>
+          </label>
+          <label class="field span-2">
+            <span>Ссылка на постер</span>
+            <input id="customPoster" name="poster" type="url" placeholder="https://.../poster.jpg" />
+          </label>
+          <label class="field span-2">
+            <span>Ссылки на серии, по одной в строке</span>
+            <textarea id="customEpisodes" name="episodes" rows="5" placeholder="https://.../episode-1.mp4&#10;https://www.youtube.com/watch?v=..."></textarea>
+          </label>
+        </div>
+
+        <p class="form-note">Добавляйте только свои видео или источники, на просмотр которых у вас есть право.</p>
+        <footer class="modal-footer">
+          <button class="secondary-button" type="button" data-close-dialog="addAnimeDialog">Отмена</button>
+          <button class="primary-button compact" type="submit">
+            <i data-lucide="library-big" aria-hidden="true"></i>
+            <span>Добавить</span>
+          </button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog class="modal admin-modal" id="adminDialog">
+      <form class="modal-panel" id="adminForm">
+        <header class="modal-header">
+          <div>
+            <p class="eyebrow">Локальная админ-панель</p>
+            <h2>Управление каталогом</h2>
+          </div>
+          <button class="icon-button" type="button" data-close-dialog="adminDialog" title="Закрыть" aria-label="Закрыть">
+            <i data-lucide="x" aria-hidden="true"></i>
+          </button>
+        </header>
+
+        <label class="field">
+          <span>Карточка</span>
+          <select id="adminAnimeSelect"></select>
+        </label>
+
+        <div class="admin-preview">
+          <img id="adminPosterPreview" alt="Предпросмотр постера" />
+          <div>
+            <strong id="adminPreviewTitle">Аниме</strong>
+            <span id="adminPreviewMeta">Выберите карточку для редактирования</span>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <label class="field">
+            <span>Русское название *</span>
+            <input id="adminTitleRu" required />
+          </label>
+          <label class="field">
+            <span>Оригинальное название</span>
+            <input id="adminTitle" />
+          </label>
+          <label class="field">
+            <span>Франшиза</span>
+            <input id="adminFranchise" />
+          </label>
+          <label class="field">
+            <span>Тип</span>
+            <select id="adminType">
+              <option value="TV">TV</option>
+              <option value="MOVIE">Фильм</option>
+              <option value="OVA">OVA</option>
+              <option value="ONA">ONA</option>
+              <option value="SPECIAL">Спецвыпуск</option>
+              <option value="MUSIC">Клип</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Год</span>
+            <input id="adminYear" type="number" min="1910" max="2100" />
+          </label>
+          <label class="field">
+            <span>Количество серий</span>
+            <input id="adminEpisodes" type="number" min="0" />
+          </label>
+          <label class="field">
+            <span>Рейтинг</span>
+            <input id="adminScore" type="number" min="0" max="10" step="0.1" />
+          </label>
+          <label class="field">
+            <span>День выхода</span>
+            <select id="adminBroadcastDay">
+              <option value="">Не указан</option>
+              <option value="monday">Понедельник</option>
+              <option value="tuesday">Вторник</option>
+              <option value="wednesday">Среда</option>
+              <option value="thursday">Четверг</option>
+              <option value="friday">Пятница</option>
+              <option value="saturday">Суббота</option>
+              <option value="sunday">Воскресенье</option>
+            </select>
+          </label>
+          <label class="field span-2">
+            <span>Ссылка на постер</span>
+            <input id="adminPoster" placeholder="https://... или ./assets/poster.webp" />
+          </label>
+          <label class="field span-2">
+            <span>Жанры через запятую</span>
+            <input id="adminGenres" />
+          </label>
+          <label class="field">
+            <span>Статус AniLibria</span>
+            <select id="adminAvailabilityState">
+              <option value="">Автоматически</option>
+              <option value="available">Доступно</option>
+              <option value="partial">Доступно не полностью</option>
+              <option value="unavailable">Недоступно в AniLibria</option>
+              <option value="expected">Ожидается</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Доступно с серии</span>
+            <input id="adminAvailabilityStart" type="number" min="1" />
+          </label>
+          <label class="field span-2">
+            <span>Заметка о доступности</span>
+            <textarea id="adminAvailabilityNote" rows="3"></textarea>
+          </label>
+          <label class="field span-2">
+            <span>Заметка гида</span>
+            <textarea id="adminGuideNote" rows="3"></textarea>
+          </label>
+          <label class="field span-2">
+            <span>Описание</span>
+            <textarea id="adminSynopsis" rows="4"></textarea>
+          </label>
+          <label class="field span-2">
+            <span>Ссылки на серии, фильмы или официальные видео</span>
+            <textarea id="adminEpisodesUrls" rows="4" placeholder="Одна ссылка в строке"></textarea>
+          </label>
+        </div>
+
+        <p class="form-note" id="adminFormNote">Изменения сохраняются только в этом браузере.</p>
+        <footer class="modal-footer admin-footer">
+          <button class="danger-button" type="button" id="adminDeleteButton">
+            <i data-lucide="rotate-ccw" aria-hidden="true"></i>
+            <span>Сбросить правки</span>
+          </button>
+          <div class="admin-footer-actions">
+            <button class="secondary-button" type="button" data-close-dialog="adminDialog">Отмена</button>
+            <button class="primary-button compact" type="submit">
+              <i data-lucide="save" aria-hidden="true"></i>
+              <span>Сохранить</span>
+            </button>
+          </div>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog class="modal player-modal" id="playerDialog">
+      <div class="modal-panel player-panel">
+        <header class="modal-header">
+          <div>
+            <p class="eyebrow" id="playerMeta">Просмотр</p>
+            <h2 id="playerTitle">Аниме</h2>
+          </div>
+          <button class="icon-button" type="button" data-close-dialog="playerDialog" title="Закрыть" aria-label="Закрыть">
+            <i data-lucide="x" aria-hidden="true"></i>
+          </button>
+        </header>
+
+        <div class="player-stage" id="playerStage">
+          <video id="videoPlayer" controls playsinline hidden></video>
+          <iframe
+            id="embedPlayer"
+            title="Видеоплеер"
+            allow="autoplay; encrypted-media; picture-in-picture"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+            hidden
+          ></iframe>
+          <div class="player-empty" id="playerEmpty">
+            <i data-lucide="video" aria-hidden="true"></i>
+            <strong>Источник пока не добавлен</strong>
+            <span>Вставьте ссылки на серии ниже или выберите видео с компьютера.</span>
+          </div>
+        </div>
+
+        <div class="episode-list" id="episodeList" aria-label="Список серий"></div>
+        <div class="playback-actions">
+          <label class="voiceover-control">
+            <span>Озвучка</span>
+            <select id="voiceoverSelect" aria-label="Озвучка" disabled>
+              <option value="">AniLibria</option>
+            </select>
+          </label>
+          <span class="playback-status" id="playbackStatus" hidden></span>
+          <a class="secondary-button source-link" id="openSourceLink" href="#" target="_blank" rel="noopener noreferrer" hidden>
+            <i data-lucide="external-link" aria-hidden="true"></i>
+            <span>Открыть оригинал</span>
+          </a>
+        </div>
+
+        <div class="source-tools">
+          <div class="custom-voiceover-row">
+            <label class="field">
+              <span>Название озвучки</span>
+              <input id="customVoiceoverName" maxlength="40" placeholder="Например, AniDub" />
+            </label>
+            <label class="field custom-voiceover-url">
+              <span>Ссылка для текущей серии</span>
+              <input id="customVoiceoverUrl" type="url" placeholder="https://..." />
+            </label>
+            <button class="icon-button" type="button" id="addVoiceoverButton" title="Добавить озвучку" aria-label="Добавить озвучку">
+              <i data-lucide="plus" aria-hidden="true"></i>
+            </button>
+          </div>
+          <label class="field source-links">
+            <span>Ссылки на серии</span>
+            <textarea id="sourceEpisodes" rows="3" placeholder="Одна ссылка в строке"></textarea>
+          </label>
+          <div class="source-actions">
+            <label class="secondary-button file-button">
+              <i data-lucide="folder-open" aria-hidden="true"></i>
+              <span>Файл с компьютера</span>
+              <input id="localVideoInput" type="file" accept="video/*" />
+            </label>
+            <button class="primary-button compact" type="button" id="saveSourcesButton">
+              <i data-lucide="save" aria-hidden="true"></i>
+              <span>Сохранить серии</span>
+            </button>
+          </div>
+        </div>
+
+        <section class="comments-panel" aria-labelledby="commentsTitle">
+          <header class="comments-head">
+            <div>
+              <p class="eyebrow">Обсуждение серии</p>
+              <h3 id="commentsTitle">Комментарии</h3>
+            </div>
+            <span id="commentCount">0</span>
+          </header>
+          <form class="comment-form" id="commentForm">
+            <label class="field" for="commentInput">
+              <span>Ваш комментарий</span>
+              <textarea id="commentInput" maxlength="700" rows="3" required placeholder="Поделитесь впечатлением о серии"></textarea>
+            </label>
+            <button class="primary-button compact" type="submit">
+              <i data-lucide="send" aria-hidden="true"></i>
+              <span>Отправить</span>
+            </button>
+          </form>
+          <div class="comment-list" id="commentList"></div>
+        </section>
+      </div>
+    </dialog>
+
+    <template id="animeCardTemplate">
+      <article class="anime-card">
+        <button class="anime-select" type="button">
+          <span class="poster-wrap">
+            <img class="poster" alt="" loading="lazy" />
+            <span class="card-availability"></span>
+          </span>
+          <span class="anime-info">
+            <span class="anime-title"></span>
+            <span class="anime-subtitle"></span>
+            <span class="anime-meta"></span>
+          </span>
+        </button>
+        <div class="card-actions">
+          <span class="score-pill"></span>
+          <button class="icon-button mini favorite-toggle" type="button" title="В избранное" aria-label="В избранное">
+            <i data-lucide="heart" aria-hidden="true"></i>
+          </button>
+        </div>
+      </article>
+    </template>
+
+    <template id="characterCardTemplate">
+      <article class="character-card">
+        <img class="character-photo" alt="" loading="lazy" />
+        <div class="character-copy">
+          <strong></strong>
+          <span></span>
+        </div>
+        <button class="icon-button mini character-favorite" type="button" title="В избранное" aria-label="В избранное">
+          <i data-lucide="heart" aria-hidden="true"></i>
+        </button>
+      </article>
+    </template>
+  </body>
+</html>

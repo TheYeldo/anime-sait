@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="12" fill="#17191d"/>
+  <path d="M8 16a8 8 0 0 1 8-8h32a8 8 0 0 1 8 8v32a8 8 0 0 1-8 8H16a8 8 0 0 1-8-8z" fill="#ff6b66"/>
+  <path d="M8 42 42 8h6a8 8 0 0 1 8 8v12L28 56H16a8 8 0 0 1-8-8z" fill="#f5b84b" opacity=".9"/>
+  <text x="32" y="39" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="900" fill="#17120f">TL</text>
+</svg>
