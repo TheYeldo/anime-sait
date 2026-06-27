@@ -4128,3 +4128,49 @@ html[data-theme="light"] :is(
     margin-top: 2px;
   }
 }
+
+/* Mobile topbar stats overflow fix */
+.quick-stats span {
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.quick-stats b {
+  flex: 0 0 auto;
+}
+
+@media (max-width: 620px) {
+  .topbar-actions {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .quick-stats {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+  }
+
+  .quick-stats span {
+    justify-content: center;
+    min-height: 32px;
+    padding: 0 6px;
+    font-size: 0.68rem;
+  }
+
+  .topbar-actions > .icon-button,
+  .topbar-actions > .secondary-button {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 360px) {
+  .quick-stats span {
+    gap: 3px;
+    padding: 0 4px;
+    font-size: 0.62rem;
+  }
+}
