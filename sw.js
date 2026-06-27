@@ -1,8 +1,8 @@
-﻿const CACHE_NAME = "taytlo-shell-20260627-watch-hub-1";
+﻿const CACHE_NAME = "taytlo-shell-20260627-premium-skin-2";
 const APP_SHELL = [
   "./",
   "./index.html",
-  "./styles.css?v=20260627-watch-hub-1",
+  "./styles.css?v=20260627-premium-skin-2",
   "./script.js?v=20260627-watch-hub-1",
   "./site.webmanifest",
   "./favicon.svg",
