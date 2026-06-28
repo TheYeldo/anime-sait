@@ -1,44 +1,78 @@
 # Временный запуск Taytlo на домене
 
-## Быстрый вариант
+## Vercel
 
-1. Откройте папку `outputs/anime-site`.
-2. Запустите:
+Чтобы SEO работало на Vercel, в деплой должны попасть уже сгенерированные:
 
-```cmd
-prepare-domain.cmd https://ваш-домен.com
-```
+- `title` и `description` на главной;
+- `canonical` с твоим доменом;
+- `sitemap.xml`;
+- `robots.txt`;
+- статические страницы `/anime/...`;
+- `seo-routes.js` с правильным `siteUrl`.
 
-3. Загрузите на хостинг всё содержимое папки `outputs/anime-site`.
-
-Команда обновит `seo.config.json`, статические страницы в `anime/`, `sitemap.xml`, `robots.txt`, `seo-routes.js`, `site.webmanifest` и главную страницу.
-
-## Если нужно без команды
-
-1. Откройте `seo.config.json`.
-2. Замените `siteUrl` на адрес сайта, например `https://taytlo.com`.
-3. Запустите `build-seo.cmd`.
-4. Загрузите на хостинг весь каталог `outputs/anime-site`.
-
-## Админ-режим
-
-На публичной версии кнопки управления скрыты. Чтобы включить локальную админку в своём браузере, откройте сайт так:
+В настройках проекта Vercel поставь:
 
 ```text
-https://ваш-домен.com/?admin=1
+Root Directory: outputs/anime-site
+Build Command: npm run build
+Output Directory: .
 ```
 
-Админка в старом сайте локальная: изменения сохраняются только в вашем браузере. Настоящую закрытую админку лучше использовать уже в основном Next.js сайте.
+В Environment Variables добавь:
+
+```text
+SITE_URL=https://твой-домен.com
+```
+
+После этого Vercel при деплое сам запустит `scripts/prepare-vercel.cjs`, обновит SEO-файлы под твой домен и отдаст статический сайт.
+
+## Локально Перед Заливкой
+
+Если деплоишь вручную, открой папку `outputs/anime-site` и запусти:
+
+```cmd
+prepare-domain.cmd https://твой-домен.com
+```
+
+Потом загрузи на хостинг всё содержимое папки `outputs/anime-site`.
+
+## Проверка
+
+После деплоя открой:
+
+```text
+https://твой-домен.com/sitemap.xml
+https://твой-домен.com/robots.txt
+```
+
+В коде главной страницы должны быть:
+
+```html
+<link rel="canonical" href="https://твой-домен.com/" />
+<meta property="og:url" content="https://твой-домен.com/" />
+```
+
+Потом добавь `https://твой-домен.com/sitemap.xml` в Google Search Console и Яндекс Вебмастер.
+
+## Админ-Режим
+
+На публичной версии кнопки управления скрыты. Чтобы включить локальную админку в своём браузере:
+
+```text
+https://твой-домен.com/?admin=1
+```
+
+Админка в старом сайте локальная: изменения сохраняются только в твоём браузере.
 
 ## Аналитика
 
-Перед запуском `prepare-domain.cmd` или `build-seo.cmd` можно задать переменные:
+Можно добавить переменные:
 
-```cmd
-set GA4_MEASUREMENT_ID=G-XXXXXXXXXX
-set GOOGLE_SITE_VERIFICATION=ваш_код_подтверждения
-set YANDEX_METRIKA_ID=12345678
-prepare-domain.cmd https://ваш-домен.com
+```text
+GA4_MEASUREMENT_ID=G-XXXXXXXXXX
+GOOGLE_SITE_VERIFICATION=код_подтверждения
+YANDEX_METRIKA_ID=12345678
 ```
 
 Если переменные пустые, сайт работает без аналитики.

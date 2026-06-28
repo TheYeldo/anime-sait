@@ -4270,7 +4270,7 @@ html[data-theme="light"] :is(
   }
 }
 
-/* Poster crop fix for public launch */
+/* Poster layout fix for public launch */
 .poster-wrap,
 .shelf-media,
 .update-media,
@@ -4287,26 +4287,23 @@ html[data-theme="light"] :is(
 .watch-hub-image,
 .popular-item img,
 .admin-preview img {
-  object-fit: contain !important;
+  object-fit: cover !important;
   object-position: center;
-}
-
-.poster,
-.shelf-media img,
-.update-media img {
-  padding: 6px;
-  filter: saturate(1.04) contrast(1.02) drop-shadow(0 10px 22px rgba(0, 0, 0, 0.28));
-}
-
-.watch-hub-image,
-.popular-item img,
-.admin-preview img {
-  padding: 3px;
+  padding: 0;
 }
 
 .detail-cover {
-  background-repeat: no-repeat, no-repeat !important;
-  background-position: center, center !important;
-  background-size: cover, contain !important;
+  position: relative;
+  overflow: hidden;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: cover !important;
   background-color: #101722;
+}
+
+.detail-cover::after {
+  position: absolute;
+  inset: 0;
+  min-height: 0 !important;
+  pointer-events: none;
 }
