@@ -1,9 +1,9 @@
-const CACHE_NAME = "taytlo-shell-20260628-temp-launch-1";
+const CACHE_NAME = "taytlo-shell-20260628-poster-fit-1";
 const APP_SHELL = [
   "./",
   "./index.html",
-  "./styles.css?v=20260628-temp-launch-1",
-  "./script.js?v=20260628-temp-launch-1",
+  "./styles.css?v=20260628-poster-fit-1",
+  "./script.js?v=20260628-poster-fit-1",
   "./site.webmanifest",
   "./favicon.svg",
   "./runtime-config.js?v=20260622-1",

@@ -4269,3 +4269,44 @@ html[data-theme="light"] :is(
     font-size: 0.62rem;
   }
 }
+
+/* Poster crop fix for public launch */
+.poster-wrap,
+.shelf-media,
+.update-media,
+.watch-hub-poster {
+  background:
+    radial-gradient(circle at 50% 24%, rgba(100, 216, 255, 0.16), transparent 42%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.055), transparent),
+    #101722;
+}
+
+.poster,
+.shelf-media img,
+.update-media img,
+.watch-hub-image,
+.popular-item img,
+.admin-preview img {
+  object-fit: contain !important;
+  object-position: center;
+}
+
+.poster,
+.shelf-media img,
+.update-media img {
+  padding: 6px;
+  filter: saturate(1.04) contrast(1.02) drop-shadow(0 10px 22px rgba(0, 0, 0, 0.28));
+}
+
+.watch-hub-image,
+.popular-item img,
+.admin-preview img {
+  padding: 3px;
+}
+
+.detail-cover {
+  background-repeat: no-repeat, no-repeat !important;
+  background-position: center, center !important;
+  background-size: cover, contain !important;
+  background-color: #101722;
+}
