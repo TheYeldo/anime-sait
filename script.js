@@ -423,7 +423,8 @@ const storageKeys = {
   customVoiceovers: "taytlo:customVoiceovers",
   quickFilters: "taytlo:quickFilters",
   notificationsEnabled: "taytlo:notificationsEnabled",
-  notifiedEpisodes: "taytlo:notifiedEpisodes"
+  notifiedEpisodes: "taytlo:notifiedEpisodes",
+  adminMode: "taytlo:adminMode"
 };
 
 function migrateLegacyStorageKeys() {
@@ -436,6 +437,20 @@ function migrateLegacyStorageKeys() {
 }
 
 migrateLegacyStorageKeys();
+
+const adminMode = (() => {
+  const params = new URL(window.location.href).searchParams;
+  const enabled = params.get("admin") === "1" || localStorage.getItem(storageKeys.adminMode) === "true";
+  if (enabled) localStorage.setItem(storageKeys.adminMode, "true");
+  return enabled;
+})();
+
+function applyPublicMode() {
+  document.documentElement.dataset.adminMode = adminMode ? "true" : "false";
+  document.querySelectorAll("[data-admin-only]").forEach((element) => {
+    element.hidden = !adminMode;
+  });
+}
 
 // Some catalog APIs return a real JPEG containing a "404 not found" drawing.
 // These signatures let us treat that file as a missing poster instead.
@@ -1021,8 +1036,8 @@ function updateSeoMetadata(anime) {
 
 function resetSeoMetadata() {
   const config = window.ANI_SEO_CONFIG || {};
-  const title = config.defaultTitle || "Taytlo - каталог аниме, рейтинги и просмотр";
-  const description = config.defaultDescription || "Русский каталог аниме с поиском, рейтингами и франшизами.";
+  const title = config.defaultTitle || "Taytlo beta - каталог аниме, рейтинги и календарь";
+  const description = config.defaultDescription || "Временная версия Taytlo: русский каталог аниме с поиском, рейтингами Shikimori и календарем серий.";
   const canonical = `${configuredSiteUrl()}/`;
   const image = new URL("assets/frieren-2.webp", canonical).toString();
   document.title = title;
@@ -4645,6 +4660,10 @@ function fillAdminForm(id) {
 }
 
 function openAdminDialog(id = state.selectedId) {
+  if (!adminMode) {
+    setStatus("Управление скрыто в публичной версии. Откройте сайт с ?admin=1, чтобы включить локальную админку.");
+    return;
+  }
   populateAdminSelect(id);
   fillAdminForm(elements.adminAnimeSelect.value);
   openDialog(elements.adminDialog);
@@ -5474,6 +5493,7 @@ function bindEvents() {
 
 registerServiceWorker();
 bindInstallPrompt();
+applyPublicMode();
 bindEvents();
 window.taytloDebugShikimori = shikimoriDebugReport;
 window.taytloRefreshShikimori = async () => {

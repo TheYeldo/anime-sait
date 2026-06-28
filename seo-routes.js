@@ -1,8 +1,8 @@
 ﻿window.ANI_SEO_CONFIG = {
-  "siteUrl": "http://127.0.0.1:4173",
+  "siteUrl": "",
   "siteName": "Taytlo",
-  "defaultTitle": "Taytlo - каталог аниме, рейтинги и просмотр",
-  "defaultDescription": "Русский каталог аниме с поиском, рейтингами, франшизами, персонажами, избранным и легальными источниками просмотра.",
+  "defaultTitle": "Taytlo beta - каталог аниме, рейтинги и календарь",
+  "defaultDescription": "Временная версия Taytlo: русский каталог аниме с поиском, рейтингами Shikimori, франшизами, избранным, историей просмотра и календарем серий.",
   "locale": "ru_RU"
 };
 window.ANI_SEO_ROUTES = {

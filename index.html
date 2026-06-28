@@ -4,37 +4,37 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- SEO:START -->
-    <meta name="description" id="metaDescription" content="Русский каталог аниме с поиском, рейтингами, франшизами, персонажами, избранным и легальными источниками просмотра." />
+    <meta name="description" id="metaDescription" content="Временная версия Taytlo: русский каталог аниме с поиском, рейтингами Shikimori, франшизами, избранным, историей просмотра и календарем серий." />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="theme-color" content="#101114" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Taytlo" />
-    <link rel="canonical" id="canonicalLink" href="http://127.0.0.1:4173/" />
+    <link rel="canonical" id="canonicalLink" href="./" />
     <link rel="manifest" href="./site.webmanifest" />
     <meta property="og:locale" content="ru_RU" />
     <meta property="og:site_name" content="Taytlo" />
     <meta property="og:type" id="ogType" content="website" />
-    <meta property="og:title" id="ogTitle" content="Taytlo - каталог аниме, рейтинги и просмотр" />
-    <meta property="og:description" id="ogDescription" content="Русский каталог аниме с поиском, рейтингами, франшизами, персонажами, избранным и легальными источниками просмотра." />
-    <meta property="og:url" id="ogUrl" content="http://127.0.0.1:4173/" />
-    <meta property="og:image" id="ogImage" content="http://127.0.0.1:4173/assets/frieren-2.webp" />
+    <meta property="og:title" id="ogTitle" content="Taytlo beta - каталог аниме, рейтинги и календарь" />
+    <meta property="og:description" id="ogDescription" content="Временная версия Taytlo: русский каталог аниме с поиском, рейтингами Shikimori, франшизами, избранным, историей просмотра и календарем серий." />
+    <meta property="og:url" id="ogUrl" content="./" />
+    <meta property="og:image" id="ogImage" content="./assets/frieren-2.webp" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" id="twitterTitle" content="Taytlo - каталог аниме, рейтинги и просмотр" />
-    <meta name="twitter:description" id="twitterDescription" content="Русский каталог аниме с поиском, рейтингами, франшизами, персонажами, избранным и легальными источниками просмотра." />
-    <meta name="twitter:image" id="twitterImage" content="http://127.0.0.1:4173/assets/frieren-2.webp" />
+    <meta name="twitter:title" id="twitterTitle" content="Taytlo beta - каталог аниме, рейтинги и календарь" />
+    <meta name="twitter:description" id="twitterDescription" content="Временная версия Taytlo: русский каталог аниме с поиском, рейтингами Shikimori, франшизами, избранным, историей просмотра и календарем серий." />
+    <meta name="twitter:image" id="twitterImage" content="./assets/frieren-2.webp" />
     <script type="application/ld+json" id="siteStructuredData">{
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "Taytlo",
-  "url": "http://127.0.0.1:4173/",
-  "description": "Русский каталог аниме с поиском, рейтингами, франшизами, персонажами, избранным и легальными источниками просмотра.",
+  "url": "./",
+  "description": "Временная версия Taytlo: русский каталог аниме с поиском, рейтингами Shikimori, франшизами, избранным, историей просмотра и календарем серий.",
   "inLanguage": "ru",
   "potentialAction": {
     "@type": "SearchAction",
     "target": {
       "@type": "EntryPoint",
-      "urlTemplate": "http://127.0.0.1:4173/?query={search_term_string}"
+      "urlTemplate": "./?query={search_term_string}"
     },
     "query-input": "required name=search_term_string"
   }
@@ -44,9 +44,9 @@
     <link rel="preconnect" href="https://cdn.myanimelist.net" crossorigin />
     <link rel="preconnect" href="https://shikimori.one" crossorigin />
     <link rel="preconnect" href="https://anilibria.top" crossorigin />
-    <title>Taytlo - поиск аниме</title>
+    <title>Taytlo beta - поиск аниме</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=20260627-premium-skin-3" />
+    <link rel="stylesheet" href="./styles.css?v=20260628-temp-launch-1" />
     <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/hls.js@1/dist/hls.min.js" defer></script>
     <script src="./seo-routes.js" defer></script>
@@ -54,7 +54,7 @@
     <script src="./analytics.js?v=20260622-1" defer></script>
     <script src="./guide-data.js?v=20260622-1" defer></script>
     <script src="./character-cache.js?v=20260621-1" defer></script>
-    <script src="./script.js?v=20260627-watch-hub-1" defer></script>
+    <script src="./script.js?v=20260628-temp-launch-1" defer></script>
   </head>
   <body>
     <div class="shell">
@@ -84,16 +84,36 @@
             <i data-lucide="user-round" aria-hidden="true"></i>
             <span>Профиль</span>
           </button>
-          <button class="secondary-button" type="button" id="adminButton">
+          <button class="secondary-button admin-only" type="button" id="adminButton" data-admin-only hidden>
             <i data-lucide="settings-2" aria-hidden="true"></i>
             <span>Управление</span>
           </button>
-          <button class="secondary-button" type="button" id="addAnimeButton">
+          <button class="secondary-button admin-only" type="button" id="addAnimeButton" data-admin-only hidden>
             <i data-lucide="plus" aria-hidden="true"></i>
             <span>Добавить аниме</span>
           </button>
         </div>
       </header>
+
+      <section class="launch-banner" aria-label="Статус Taytlo">
+        <div class="launch-copy">
+          <span class="launch-badge">beta</span>
+          <div>
+            <strong>Taytlo уже можно открывать на домене</strong>
+            <p>Это временная версия каталога: поиск, избранное, рейтинги, календарь и история работают в браузере, а основной сайт готовится дальше.</p>
+          </div>
+        </div>
+        <div class="launch-actions">
+          <a class="secondary-button compact" href="#catalog">
+            <i data-lucide="grid-2x2" aria-hidden="true"></i>
+            <span>Каталог</span>
+          </a>
+          <a class="primary-button compact" href="#calendarTitle">
+            <i data-lucide="calendar-days" aria-hidden="true"></i>
+            <span>Календарь</span>
+          </a>
+        </div>
+      </section>
 
       <main>
         <section class="search-band" aria-label="Поиск аниме">
@@ -208,7 +228,7 @@
           <div class="watch-hub-grid" id="watchHubGrid"></div>
         </section>
 
-        <section class="workspace" aria-label="Каталог и персонажи">
+        <section class="workspace" id="catalog" aria-label="Каталог и персонажи">
           <div class="anime-column">
             <div class="section-heading">
               <h1 id="viewTitle">Каталог аниме</h1>
@@ -242,7 +262,7 @@
                   <button class="icon-button" type="button" id="shareAnimeButton" title="Копировать ссылку" aria-label="Копировать ссылку">
                     <i data-lucide="link-2" aria-hidden="true"></i>
                   </button>
-                  <button class="icon-button" type="button" id="editAnimeButton" title="Редактировать карточку" aria-label="Редактировать карточку">
+                  <button class="icon-button admin-only" type="button" id="editAnimeButton" data-admin-only hidden title="Редактировать карточку" aria-label="Редактировать карточку">
                     <i data-lucide="pencil" aria-hidden="true"></i>
                   </button>
                   <button class="icon-button heart-button" type="button" id="detailFavorite" title="В избранное" aria-label="В избранное">

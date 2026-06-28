@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /*?anime=
 
-Sitemap: http://127.0.0.1:4173/sitemap.xml
+# Run prepare-domain.cmd https://your-domain.com before production upload to add the correct Sitemap URL.
